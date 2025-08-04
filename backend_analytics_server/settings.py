@@ -27,6 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+API_URL = 'http://malvaradox.pythonanywhere.com/landing/api/index/'
 
 # Application definition
 
