@@ -25,7 +25,9 @@ SECRET_KEY = 'django-insecure-%^nr(_-)hw-+=v%x$_!tamv$%dah44xvczypz1%9-#h)*x82ei
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "*"
+]
 
 API_URL = 'http://malvaradox.pythonanywhere.com/landing/api/index/'
 
@@ -126,3 +128,8 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://localhost:8000",
+    "http://127.0.0.1:8000"
+]

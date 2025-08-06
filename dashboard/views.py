@@ -3,9 +3,10 @@ import requests
 from django.conf import settings
 from collections import Counter
 from datetime import datetime
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
-
+@login_required
 def index(request):
 
     response = requests.get(settings.API_URL)  # URL de la API
