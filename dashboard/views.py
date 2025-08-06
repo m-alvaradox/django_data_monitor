@@ -10,13 +10,24 @@ def index(request):
 
     response = requests.get(settings.API_URL)  # URL de la API
     posts = response.json()  # Convertir la respuesta a JSON
+    conteos = posts
 
-    # Número total de respuestas
-    total_responses = len(posts)
+    # Número total de votos
+    total_responses = sum(conteos.values())
+
+    ordenado = sorted(conteos.items(), key=lambda x: x[1], reverse=True)
+    plato_mas_popular = ordenado[0][0]
+    votos_maximos = ordenado[0][1]
+
+    plato_menos_popular = ordenado[-1][0]
+
 
     data = {
-        'title': "Landing Page' Dashboard",
+        'title': "La Tonga Manaba Dashboard",
         'total_responses': total_responses,
+        'plato_mas_popular': plato_mas_popular,
+        'votos_maximos': votos_maximos,
+        'plato_menos_popular': plato_menos_popular,
     }
         
     return render(request, "dashboard/index.html", data)
