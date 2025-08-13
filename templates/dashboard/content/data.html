@@ -105,7 +105,7 @@
 
     <div class="grid gap-6 mb-8 md:grid-cols-2">
 
-      <!-- BEGIN - Datos -->
+       <!-- BEGIN - Datos -->
       <div class="row-span-1 w-full overflow-hidden rounded-lg shadow-xs mb-6">
 
         <div class="w-full overflow-x-auto">
@@ -113,37 +113,32 @@
             <thead>
               <tr
                 class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
-                <th class="px-4 py-3">Columna 1</th>
-                <th class="px-4 py-3">Columna 2</th>
+                <th class="px-4 py-3">Plato</th>
+                <th class="px-4 py-3">Votos</th>
               </tr>
             </thead>
             <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
-
-              <!-- START - respuestas -->
-              <tr class="text-gray-700 dark:text-gray-400">
+              {% for plato, votos in conteos.items %}
+              <tr class="text-gray-700 dark:text-gray-400 {% cycle 'bg-gray-100' 'bg-white' %}">
                 <td class="px-4 py-3 text-sm">
-                  <!-- START - fila.valor1 -->
-                  fila.valor1
-                  <!-- END - fila.valor1 -->
+                  {{ plato }}
                 </td>
                 <td class="px-4 py-3 text-sm">
-                  <!-- START - fila.valor2 -->
-                  fila.valor2
-                  <!-- END - fila.valor2 -->
+                  {% if votos > 100 %}
+                    <span class="font-bold text-green-600">{{ votos }}</span>
+                  {% else %}
+                    <span class="text-red-600">{{ votos }}</span>
+                  {% endif %}
                 </td>
               </tr>
-              <!-- END - respuestas -->
-
+              {% endfor %}
             </tbody>
           </table>
         </div>
         <div
           class="grid px-4 py-3 text-xs font-semibold tracking-wide text-gray-500 uppercase border-t dark:border-gray-700 bg-gray-50 sm:grid-cols-9 dark:text-gray-400 dark:bg-gray-800">
           <span class="flex items-center col-span-3">
-            <!-- START - # total de respuestas -->
-            XXX
-            <!-- END - # total de respuestas -->
-            respuestas
+            {{ total_responses }} respuestas
           </span>
         </div>
       </div>
