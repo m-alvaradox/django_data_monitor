@@ -22,6 +22,11 @@ def index(request):
 
     plato_menos_popular = ordenado[-1][0]
 
+    indicadores = [
+        {'nombre': 'Ventas', 'valor': 1200},
+        {'nombre': 'Usuarios', 'valor': 350},
+        {'nombre': 'Visitas', 'valor': 980},
+    ]
 
     data = {
         'title': "La Tonga Manaba Dashboard",
@@ -29,6 +34,8 @@ def index(request):
         'plato_mas_popular': plato_mas_popular,
         'votos_maximos': votos_maximos,
         'plato_menos_popular': plato_menos_popular,
+        'indicadores': indicadores,
     }
         
     return render(request, "dashboard/index.html", data)
+

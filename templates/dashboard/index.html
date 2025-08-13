@@ -4,12 +4,43 @@
 
   <!-- START - Block content -->
 
-     <div class="flex flex-col flex-1 justify-center w-full">
+  <div class="flex flex-col flex-1 justify-center w-full">
 
-        {% include "./partials/header.html" %}
-        {% include "./content/data.html" %}
+    {% include "./partials/header.html" %}
+    {% include "./content/data.html" %}
 
-     </div>
+    <!-- Indicadores Table -->
+    <table>
+      <thead>
+        <tr>
+          <th>Indicador</th>
+          <th>Valor</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for indicador in indicadores %}
+        <tr class="{% cycle 'row-light' 'row-dark' %}">
+          <td>{{ indicador.nombre }}</td>
+          <td>
+            {% if indicador.valor > 1000 %}
+              <span class="high">{{ indicador.valor }}</span>
+            {% else %}
+              <span class="low">{{ indicador.valor }}</span>
+            {% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <!-- Datos para gráfico (renderizados del lado del servidor) -->
+    <ul id="grafico-datos" style="display:none;">
+      {% for indicador in indicadores %}
+        <li data-nombre="{{ indicador.nombre }}" data-valor="{{ indicador.valor }}"></li>
+      {% endfor %}
+    </ul>
+
+  </div>
 
   <!-- END - Block content -->
 
