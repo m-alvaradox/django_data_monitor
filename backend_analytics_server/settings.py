@@ -34,15 +34,16 @@ LOGIN_REDIRECT_URL = '/'
 SECRET_KEY = 'django-insecure-%^nr(_-)hw-+=v%x$_!tamv$%dah44xvczypz1%9-#h)*x82ei'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 CSRF_TRUSTED_ORIGINS = [
+  "https://*.up.railway.app",
   "https://localhost:8000",
   "http://127.0.0.1:8000"
 ]
 
 ALLOWED_HOSTS = [
-  "*",
+  ".up.railway.app",
 ]
 
 API_URL = 'http://malvaradox.pythonanywhere.com/landing/api/index/'
@@ -61,6 +62,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # Agregar WhiteNoise al middleware (debe ir después de SecurityMiddleware)
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -143,6 +145,10 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, STATIC_URL),
 ]
+
+STATIC_ROOT = BASE_DIR / 'assets'
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
